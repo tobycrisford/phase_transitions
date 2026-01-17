@@ -58,11 +58,16 @@ class Lattice:
 
     def get_image_lattice(self) -> np.ndarray:
 
+        rgb_data = np.zeros(tuple(self.N for _ in range(self.dimension)) + (3, ))
+        rgb_data[..., 0] = (np.cos(self.lattice) + 1) / 2
+        rgb_data[..., 1] = (np.sin(self.lattice) + 1) / 2
+        rgb_data[..., 2] = 0.5
+        
         if self.dimension == 2:
-            return self.lattice
+            return rgb_data
         elif self.dimension == 1:
-            img_lattice = np.zeros((self.N, self.N))
-            img_lattice[:, :] = self.lattice
+            img_lattice = np.zeros((self.N, self.N, 3))
+            img_lattice[:, :, :] = rgb_data
             return img_lattice
         else:
             raise NotImplementedError()
@@ -86,7 +91,7 @@ def animate_model(lattice: Lattice, n_iterations: int, refresh_every: int) -> No
 
 if __name__ == '__main__':
 
-    test_lattice = Lattice(2, 100, 10, 2)
+    test_lattice = Lattice(2, 100, 0.7, 2)
 
     animate_model(test_lattice, 1000000, 10000)
 
