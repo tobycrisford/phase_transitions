@@ -49,21 +49,28 @@ class Lattice:
         for _ in iterator:
             self.monte_carlo_update()
 
-    def get_boolean_lattice(self) -> np.ndarray:
+    def get_image_lattice(self) -> np.ndarray:
 
-        return self.lattice > 0
+        if self.dimension == 2:
+            return self.lattice > 0
+        elif self.dimension == 1:
+            img_lattice = np.zeros((self.N, self.N))
+            img_lattice[:, :] = self.lattice
+            return img_lattice
+        else:
+            raise NotImplementedError()
 
 
 
 def animate_model(lattice: Lattice, n_iterations: int, refresh_every: int) -> None:
 
     fig, ax = plt.subplots()
-    img = ax.imshow(lattice.get_boolean_lattice(), cmap='Blues', interpolation='nearest')
+    img = ax.imshow(lattice.get_image_lattice(), cmap='Blues', interpolation='nearest')
 
     def _update(frame):
         lattice.run_n_updates(refresh_every)
         
-        img.set_data(lattice.get_boolean_lattice())
+        img.set_data(lattice.get_image_lattice())
         return [img]
 
     ani = FuncAnimation(fig, _update, frames=int(n_iterations / refresh_every), interval=1, blit=True, repeat=False)
@@ -72,7 +79,7 @@ def animate_model(lattice: Lattice, n_iterations: int, refresh_every: int) -> No
 
 if __name__ == '__main__':
 
-    test_lattice = Lattice(2, 100, 0.44)
+    test_lattice = Lattice(1, 100, 100)
 
     animate_model(test_lattice, 1000000, 10000)
 
