@@ -1,5 +1,9 @@
 import numpy as np
 from tqdm import tqdm
+import matplotlib
+import matplotlib.pyplot as plt
+matplotlib.use('TkAgg')
+from matplotlib.animation import FuncAnimation
 
 class Lattice:
 
@@ -38,15 +42,37 @@ class Lattice:
 
 
     def run_n_updates(self, n: int, progress: bool = False) -> None:
-        for _ in tqdm(range(n)):
+        if progress:
+            iterator = tqdm(range(n))
+        else:
+            iterator = range(n)
+        for _ in iterator:
             self.monte_carlo_update()
+
+    def get_boolean_lattice(self) -> np.ndarray:
+
+        return self.lattice > 0
+
+
+
+def animate_model(lattice: Lattice, n_iterations: int, refresh_every: int) -> None:
+
+    fig, ax = plt.subplots()
+    img = ax.imshow(lattice.get_boolean_lattice(), cmap='Blues', interpolation='nearest')
+
+    def _update(frame):
+        lattice.run_n_updates(refresh_every)
+        
+        img.set_data(lattice.get_boolean_lattice())
+        return [img]
+
+    ani = FuncAnimation(fig, _update, frames=int(n_iterations / refresh_every), interval=1, blit=True, repeat=False)
+    plt.show()
 
 
 if __name__ == '__main__':
 
-    test_lattice = Lattice(2, 100, 100)
+    test_lattice = Lattice(2, 100, 0.44)
 
-    test_lattice.run_n_updates(1000000, progress=True)
-
-    breakpoint()
+    animate_model(test_lattice, 1000000, 10000)
 
