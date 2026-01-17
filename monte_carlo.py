@@ -32,9 +32,9 @@ class Lattice:
         probs /= np.sum(probs)
 
         if np.random.rand() < probs[0]:
-            self.lattice[sample_point] = -1
+            self.lattice[tuple(sample_point)] = -1
         else:
-            self.lattice[sample_point] = 1
+            self.lattice[tuple(sample_point)] = 1
 
 
     def run_n_updates(self, n: int, progress: bool = False) -> None:
@@ -44,7 +44,7 @@ class Lattice:
 
 if __name__ == '__main__':
 
-    test_lattice = Lattice(2, 1000, 0.1)
+    test_lattice = Lattice(2, 100, 100)
 
     test_lattice.run_n_updates(1000000, progress=True)
 
