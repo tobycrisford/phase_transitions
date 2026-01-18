@@ -72,18 +72,72 @@ class Lattice:
         else:
             raise NotImplementedError()
 
+    
+    def _find_closest_diff(self, theta_a: float, theta_b: float) -> float:
+
+        diff = (theta_a - theta_b) % (2 * np.pi)
+        if diff > np.pi:
+            return diff - 2 * np.pi
+        else:
+            return diff
+    
+    def check_for_vortex(self, x: int, y: int) -> int:
+
+        if not self.o_dimension == 2:
+            raise Exception('Vortices only make sense for the O2 model')
+
+        diff_a = self._find_closest_diff(self.lattice[(x+1) % self.N, y], self.lattice[x, y])
+        diff_b = self._find_closest_diff(self.lattice[(x+1) % self.N, (y+1) % self.N], self.lattice[(x+1) % self.N, y])
+        diff_c = self._find_closest_diff(self.lattice[x, (y+1)%self.N], self.lattice[(x+1) % self.N, (y+1) % self.N])
+        diff_d = self._find_closest_diff(self.lattice[x, y], self.lattice[x, (y+1) % self.N])
+
+        winding_number = round((diff_a + diff_b + diff_c + diff_d) / (2 * np.pi))
+
+        return winding_number
+
+    
+    def find_vortices(self) -> np.ndarray:
+
+        if not self.o_dimension == 2:
+            raise Exception('Vortices only make sense for the O2 model')
+
+        vortices = []
+        for x in range(self.N):
+            vortices.append([])
+            for y in range(self.N):
+                vortices[x].append(self.check_for_vortex(x, y))
+
+        return np.array(vortices)
+
+
+
 
 
 def animate_model(lattice: Lattice, n_iterations: int, refresh_every: int) -> None:
 
-    fig, ax = plt.subplots()
-    img = ax.imshow(lattice.get_image_lattice(), cmap='Blues', interpolation='nearest')
+    if lattice.o_dimension == 2:
+        fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(8, 10))
+        plt.subplots_adjust(bottom=0.15, hspace=0.3)
+    else:
+        fig, ax1 = plt.subplots()
+    
+    img = ax1.imshow(lattice.get_image_lattice())
+    if lattice.o_dimension == 2:
+        vortex_img = ax2.imshow(lattice.find_vortices(), cmap='Blues', interpolation='nearest')
+    else:
+        vortex_img = None
 
     def _update(frame):
         lattice.run_n_updates(refresh_every)
         
+        updated = []
         img.set_data(lattice.get_image_lattice())
-        return [img]
+        updated.append(img)
+        if vortex_img:
+            vortex_img.set_data(lattice.find_vortices())
+            updated.append(vortex_img)
+        
+        return updated
 
     ani = FuncAnimation(fig, _update, interval=1, blit=True, repeat=False, cache_frame_data=False)
     plt.show()
@@ -91,7 +145,7 @@ def animate_model(lattice: Lattice, n_iterations: int, refresh_every: int) -> No
 
 if __name__ == '__main__':
 
-    test_lattice = Lattice(2, 100, 5, 2)
+    test_lattice = Lattice(2, 100, 10.0, 2)
 
     animate_model(test_lattice, 1000000, 10000)
 
