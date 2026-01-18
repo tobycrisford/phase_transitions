@@ -8,7 +8,7 @@ from matplotlib.animation import FuncAnimation
 class Lattice:
 
     ISING_STATES = np.array([0.0, np.pi])
-    O2_STATES = np.linspace(0, 2*np.pi, endpoint=False, num=20)
+    O2_STATES = np.linspace(0, 2*np.pi, endpoint=False, num=100)
 
     def __init__(self, dimension: int, N: int, beta: float, o_dimension: int):
 
@@ -85,13 +85,13 @@ def animate_model(lattice: Lattice, n_iterations: int, refresh_every: int) -> No
         img.set_data(lattice.get_image_lattice())
         return [img]
 
-    ani = FuncAnimation(fig, _update, frames=int(n_iterations / refresh_every), interval=1, blit=True, repeat=False)
+    ani = FuncAnimation(fig, _update, interval=1, blit=True, repeat=False, cache_frame_data=False)
     plt.show()
 
 
 if __name__ == '__main__':
 
-    test_lattice = Lattice(2, 100, 0.7, 2)
+    test_lattice = Lattice(2, 100, 5, 2)
 
     animate_model(test_lattice, 1000000, 10000)
 
