@@ -83,8 +83,8 @@ class Lattice:
     
     def check_for_vortex(self, x: int, y: int) -> int:
 
-        if not self.o_dimension == 2:
-            raise Exception('Vortices only make sense for the O2 model')
+        if not (self.o_dimension == 2 and self.dimension == 2):
+            raise Exception('Vortices only make sense for the O2 model in 2D')
 
         diff_a = self._find_closest_diff(self.lattice[(x+1) % self.N, y], self.lattice[x, y])
         diff_b = self._find_closest_diff(self.lattice[(x+1) % self.N, (y+1) % self.N], self.lattice[(x+1) % self.N, y])
@@ -98,8 +98,8 @@ class Lattice:
     
     def find_vortices(self) -> np.ndarray:
 
-        if not self.o_dimension == 2:
-            raise Exception('Vortices only make sense for the O2 model')
+        if not (self.o_dimension == 2 and self.dimension == 2):
+            raise Exception('Vortices only make sense for the O2 model in 2D')
 
         vortices = []
         for x in range(self.N):
@@ -145,7 +145,7 @@ def animate_model(lattice: Lattice, n_iterations: int, refresh_every: int) -> No
 
 if __name__ == '__main__':
 
-    test_lattice = Lattice(2, 100, 10.0, 2)
+    test_lattice = Lattice(2, 100, 5, 2)
 
     animate_model(test_lattice, 1000000, 10000)
 
