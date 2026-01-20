@@ -210,7 +210,7 @@ function animate_model(lattice, canvas, vortex_canvas, refresh_every) {
                 }
     
                 data[i] = 255 * ((Math.cos(lattice_site) + 1) / 2); // Red
-                data[i + 1] = 255 * ((Math.cos(lattice_site) + 1) / 2); // Green
+                data[i + 1] = 255 * ((Math.sin(lattice_site) + 1) / 2); // Green
                 data[i + 2] = 128;  // Blue (constant)
                 data[i + 3] = 255;  // Alpha (fully opaque)
 
