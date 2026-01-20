@@ -3,8 +3,12 @@
         <script src="monte_carlo.js"></script>
     </head>
     <body>
-        <canvas id="lattice" width="200" height="200"></canvas>
-        <canvas id="vortices" width="200" height="200"></canvas>
+        <div>
+            <canvas id="lattice" width="100" height="100" style="width: 500px; height: 500px; image-rendering: pixelated;"></canvas>
+        </div>
+        <div>
+            <canvas id="vortices" width="100" height="100" style="width: 500px; height: 500px; image-rendering: pixelated;"></canvas>
+        </div>
     </body>
     <script>
         const lattice = new Lattice(2, 100, 5, 2);
