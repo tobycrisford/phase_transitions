@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <script src="monte_carlo.js"></script>
+    </head>
+    <body>
+        <canvas id="lattice" width="200" height="200"></canvas>
+        <canvas id="vortices" width="200" height="200"></canvas>
+    </body>
+    <script>
+        const lattice = new Lattice(2, 100, 5, 2);
+        animate_model(lattice, document.getElementById("lattice"), document.getElementById("vortices"), 10000);
+    </script>
+</html>
