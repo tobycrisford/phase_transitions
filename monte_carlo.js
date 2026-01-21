@@ -70,6 +70,11 @@ function sample_from_dist(dist) {
 class Lattice {
     constructor(dimension, N, beta, o_dimension) {
 
+        this.set_lattice_params(dimension, N, o_dimension);
+        this.beta = beta;
+    }
+
+    set_lattice_params(dimension, N, o_dimension) {
         this.vortices = null;
         if (o_dimension === 1) {
             this.lattice = generate_lattice(dimension, N, random_ising_lattice_site);
@@ -88,8 +93,6 @@ class Lattice {
         else {
             throw new Error('o_dimension currently only supports 1 or 2');
         }
-
-        this.beta = beta;
         this.N = N;
         this.dimension = dimension;
         this.o_dimension = o_dimension;
@@ -244,7 +247,7 @@ function fetch_parameters() {
         parameters[param] = parseInt(document.getElementById(param).value);
     }
 
-    parameters.beta = 1 / 10**(parseFloat(document.getElementById("log_temperature").value));
+    parameters.beta = 1 / parseFloat(document.getElementById("temperature").value);
 
     return parameters;
 }
@@ -259,6 +262,18 @@ function update_parameters() {
     if (parameters.beta !== lattice.beta) {
         lattice.beta = parameters.beta;
     }
+
+    let lattice_change = false;
+    for (const param of ['o_dimension', 'dimension', 'N']) {
+        if (parameters[param] !== lattice[param]) {
+            lattice_change = true;
+            break;
+        }
+    }
+    if (lattice_change) {
+        lattice.set_lattice_params(parameters.dimension, parameters.N, parameters.o_dimension);
+    }
+    
 
     document.getElementById("temperature_display").textContent = (1 / parameters.beta).toString();
 }
