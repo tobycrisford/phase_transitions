@@ -235,3 +235,32 @@ function animate_model(lattice, canvas, vortex_canvas, refresh_every) {
     
     requestAnimationFrame(updateAndDraw);
 }
+
+let lattice = null;
+
+function fetch_parameters() {
+    const parameters = {};
+    for (const param of ["dimension", "o_dimension", "N"]) {
+        parameters[param] = parseInt(document.getElementById(param).value);
+    }
+
+    parameters.beta = 1 / 10**(parseFloat(document.getElementById("log_temperature").value));
+
+    return parameters;
+}
+
+function update_parameters() {
+    const parameters = fetch_parameters();
+
+    if (lattice === null) {
+        lattice = new Lattice(parameters.dimension, parameters.N, parameters.beta, parameters.o_dimension);
+    }
+    
+    if (parameters.beta !== lattice.beta) {
+        lattice.beta = parameters.beta;
+    }
+
+    document.getElementById("temperature_display").textContent = (1 / parameters.beta).toString();
+}
+
+
