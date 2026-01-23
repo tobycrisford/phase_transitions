@@ -179,10 +179,20 @@ class Lattice {
 }
 
 
+let animation_id = null;
 function animate_model(lattice, canvas, vortex_canvas, refresh_every) {
     
     if (!((lattice.dimension === 1) || (lattice.dimension === 2))) {
         throw new Error('Cant draw lattice with dimensions above 1 or 2!')
+    }
+
+    if (animation_id !== null) {
+        cancelAnimationFrame(animation_id);
+    }
+
+    for (const canvas_obj of [canvas, vortex_canvas]) {
+        canvas_obj.setAttribute("width", lattice.N.toString());
+        canvas_obj.setAttribute("height", lattice.N.toString());
     }
     
     const ctx = canvas.getContext('2d');
@@ -233,10 +243,10 @@ function animate_model(lattice, canvas, vortex_canvas, refresh_every) {
         ctx.putImageData(imageData, 0, 0);
         vortex_ctx.putImageData(vortexImageData, 0, 0);
     
-        requestAnimationFrame(updateAndDraw);
+        animation_id = requestAnimationFrame(updateAndDraw);
     }
     
-    requestAnimationFrame(updateAndDraw);
+    animation_id = requestAnimationFrame(updateAndDraw);
 }
 
 let lattice = null;
@@ -272,10 +282,14 @@ function update_parameters() {
     }
     if (lattice_change) {
         lattice.set_lattice_params(parameters.dimension, parameters.N, parameters.o_dimension);
-    }
-    
+    }    
 
     document.getElementById("temperature_display").textContent = (1 / parameters.beta).toString();
+    document.getElementById("grid_display").textContent = lattice.N.toString();
+
+    if (lattice_change || animation_id === null) {
+        animate_model(lattice, document.getElementById('lattice'), document.getElementById('vortices'), Math.pow(lattice.N, 2));
+    }
 }
 
 
