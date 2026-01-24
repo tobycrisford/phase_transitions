@@ -3,9 +3,32 @@
         <script src="monte_carlo.js"></script>
     </head>
     <body>
+        <div class="explainer" id="intro">
+            <p>This is a monte carlo simulation of the Ising and XY models in 1 or 2 dimensions.</p>
+
+            <p>
+                <b>Ising model: </b> a grid of pixels that can be in one of two states (represented as colours).
+                Each pixel interacts with its neighbours.
+                It prefers to be in the same state as its neighbours. More precisely: arrangements where neighbouring pixels
+                are in the same state have lower energy than arrangements where neighbouring pixels are in different states. The arrangement
+                with lowest possible energy is the one where <i>all</i> pixels are in the same state (are all the same colour). But if we raise the
+                temperature, thermal fluctuations can push us into arrangements with higher energy.
+            </p>
+
+            <p>
+                <b>XY model: </b> a grid of arrows. Each arrow can point in any direction in the plane (covering a circle).
+                Because drawing lots of arrows looks messy, the direction of each arrow is represented with a coloured pixel.
+                The colour varies continuously as the direction of the arrow moves around the circle.
+                Each arrow interacts with its neighbours. It prefers to point in a direction that is close to the direction its
+                neighbours are pointing in. More precisely: arrangements where neighbouring arrows point in similar directions
+                have lower energy than arrangements where neighbouring arrows point in different directions. The arrangement
+                with lowest possible energy is the one where <i>all</i> arrows point in the same direction (are all the same colour).
+                But if we raise the temperature, thermal fluctuations can push us into arrangements of higher energy.
+            </p>
+        </div>
         <div class="inputs" id="inputs">
             <div>
-                <label>Dimension: </label>
+                <label>Grid dimension: </label>
                 <select name="dimension" id="dimension">
                     <option value="1">1</option>
                     <option value="2" selected>2</option>
