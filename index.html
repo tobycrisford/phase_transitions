@@ -4,24 +4,38 @@
     </head>
     <body>
         <div class="inputs" id="inputs">
-            <select name="dimension" id="dimension">
-                <option value="1">1</option>
-                <option value="2" selected>2</option>
-            </select>
-            <select name="o_dimension" id="o_dimension">
-                <option value="1">1</option>
-                <option value="2" selected>2</option>
-            </select>
-            <input type="range" id="N" value="100" min="1" max="250" step="1"/>
-            <span id="grid_display"></span>
-            <input type="range" id="temperature" name="temperature" min="0.01" max="5" step="0.01" value="0.1"/>
-            <span id="temperature_display"></span>
+            <div>
+                <label>Dimension: </label>
+                <select name="dimension" id="dimension">
+                    <option value="1">1</option>
+                    <option value="2" selected>2</option>
+                </select>
+            </div>
+            <div>
+                <label>Model: </label>
+                <select name="o_dimension" id="o_dimension">
+                    <option value="1">Ising</option>
+                    <option value="2" selected>XY</option>
+                </select>
+            </div>
+            <div>
+                <label>Grid size: </label>
+                <input type="range" id="N" value="100" min="1" max="250" step="1"/>
+                <span id="grid_display"></span>
+            </div>
+            <div>
+                <label>Temperature: </label>
+                <input type="range" id="temperature" name="temperature" min="0.01" max="5" step="0.01" value="0.1"/>
+                <span id="temperature_display"></span>
+            </div>
         </div>
         <div class="canvases">
             <div class="canvas">
+                <h1>Lattice</h1>
                 <canvas id="lattice" width="100" height="100" style="width: 500px; height: 500px; image-rendering: pixelated;"></canvas>
             </div>
             <div class="canvas">
+                <h1>Vortices</h1>
                 <canvas id="vortices" width="100" height="100" style="width: 500px; height: 500px; image-rendering: pixelated;"></canvas>
             </div>
         </div>
