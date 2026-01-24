@@ -1,0 +1,6 @@
+Close to the critical temperature (2.77) the correlation length of the thermal fluctuations becomes
+very large. At the critical temperature itself, it becomes infinite (or at least would on an infinite lattice).
+The fluctuations take on a scale invariant, fractal structure.
+This is an example of a second order phase transition.
+Below the critical temperature, the symmetry is broken and we have a bias towards one state over the other.
+Above the critical temperature, the symmetry is restored.

@@ -1,0 +1,10 @@
+At low temperatures, the symmetry is broken, and the majority of pixels occupy the same state, possibly with small thermal 
+fluctuations on top. It may take some time to settle down to this arrangmeent though.
+You may first see a region of one colour slowly eroded by a larger region of the other.
+There is one possible exception to this behaviour that you might also rarely see.
+Because our grid is periodic, it effectively has the topology of a torus (a doughnut).
+If a region of one state wraps around the hole of the doughnut, then it can become very hard to get rid of.
+One of its boundaries has effectively disappeared. If the remaining boundary becomes a straight line,
+then we end up with a very stable configuration. The pixels on either side of the boundary have their states
+protected by the three states around them on their own side. There are no longer any corners where the smaller
+region can be attacked by the larger.

@@ -1,0 +1,14 @@
+Above the ... transition, we have enough energy to spontaneously create vortex/anti-vortex pairs, and this happens everywhere.
+These vortices and anti-vortices completely destroy the long-range correlations.
+
+A 'vortex' is a special arrangement of arrows. It has a center point. As you move in a complete circle around the center point,
+the direction of the arrows rotates by exactly 360 degrees (e.g. from green to blue to red to green again if you move clockwise).
+Vortices are special. First, although there is a large energy cost near the center of the vortex where arrows point in very
+different directions to their neighbours, this large energy cost is confined to a small region. The energy cost further away from the center
+is much smaller, and becomes negligible at large distances. So vortices don't cost too much energy to form. Second, once you have a vortex,
+it is very hard to get rid of it. Consider an arrow that is part of the vortex. It is being pulled one way by the arrows to its left,
+but the opposite way by the arrows to its right. This makes the arrangement very stable. It is an example of a 'topological defect'.
+
+The only way to get rid of a vortex is to collide it with an 'anti-vortex' (which is just a vortex where the winding goes the other way,
+from green to red to blue to green).
+
