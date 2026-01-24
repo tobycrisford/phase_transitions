@@ -232,7 +232,7 @@ function animate_model(lattice, canvas, vortex_canvas, refresh_every) {
                     if (lattice.max_vortex > 0) {
                         image_scaling *= lattice.max_vortex * 2;
                     }
-                    vortex_data[i] = (255 / image_scaling) * (lattice.vortices[x][y] + lattice.max_vortex);
+                    vortex_data[i] = (255 / image_scaling) * (lattice.vortices[x][y] + (image_scaling / 2));
                     vortex_data[i + 1] = 0;
                     vortex_data[i + 2] = 0;
                     vortex_data[i + 3] = 255;
