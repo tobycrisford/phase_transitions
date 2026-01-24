@@ -284,7 +284,7 @@ function update_parameters() {
         lattice.set_lattice_params(parameters.dimension, parameters.N, parameters.o_dimension);
     }    
 
-    document.getElementById("temperature_display").textContent = (1 / parameters.beta).toString();
+    document.getElementById("temperature_display").textContent = (1 / parameters.beta).toFixed(2).toString();
     document.getElementById("grid_display").textContent = lattice.N.toString();
 
     if (lattice_change || animation_id === null) {
