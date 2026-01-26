@@ -262,6 +262,19 @@ function fetch_parameters() {
     return parameters;
 }
 
+let dynamic_explainer_promise = fetch('dynamic_explainer.json').then((response) => response.json());
+
+async function update_dynamic_explanation(o_dimension, dimension, temperature, explanation_element) {
+    const dynamic_explainer_lookup = await dynamic_explainer_promise;
+    const exps = dynamic_explainer_lookup[o_dimension.toString()][dimension.toString()];
+    for (const exp of exps) {
+        if (((temperature >= exp.range[0]) || (exp.range[0] === null)) && ((temperature < exp.range[1]) || (exp.range[1] === null))) {
+            const explanation = await fetch('dynamic_explainer/' + exp.explainer).then((response) => response.text());
+            explanation_element.textContent = explanation;
+        }
+    }
+}
+
 function update_parameters() {
     const parameters = fetch_parameters();
 
@@ -284,8 +297,10 @@ function update_parameters() {
         lattice.set_lattice_params(parameters.dimension, parameters.N, parameters.o_dimension);
     }    
 
-    document.getElementById("temperature_display").textContent = (1 / parameters.beta).toFixed(2).toString();
+    const temperature = 1 / parameters.beta;
+    document.getElementById("temperature_display").textContent = temperature.toFixed(2).toString();
     document.getElementById("grid_display").textContent = lattice.N.toString();
+    update_dynamic_explanation(parameters.o_dimension, parameters.dimension, temperature, document.getElementById("dynamic_explainer"));
 
     if (lattice_change || animation_id === null) {
         animate_model(lattice, document.getElementById('lattice'), document.getElementById('vortices'), Math.pow(lattice.N, 2));

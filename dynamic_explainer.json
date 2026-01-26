@@ -1,0 +1,46 @@
+{
+    "1": {
+        "1": [
+            {
+                "range": [null, null],
+                "explainer": "1_1.txt"
+            }
+        ],
+        "2": [
+            {
+                "range": [null, 2.2],
+                "explainer": "1_2_2-2.txt"
+            },
+            {
+                "range": [2.2, 3.0],
+                "explainer": "1_2_3-0.txt"
+            },
+            {
+                "range": [3.0, null],
+                "explainer": "1_2_max.txt"
+            }
+        ]
+    },
+    "2": {
+        "1": [
+            {
+                "range": [null, null],
+                "explainer": "2_1.txt"
+            }
+        ],
+        "2": [
+            {
+                "range": [null, 0.45],
+                "explainer": "2_2_0-45.txt"
+            },
+            {
+                "range": [0.45, 1.0],
+                "explainer": "2_2_1-0.txt"
+            },
+            {
+                "range": [1.0, null],
+                "explainer": "2_2_max.txt"
+            }
+        ]
+    }
+}
