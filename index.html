@@ -6,7 +6,9 @@
         <div class="explainer" id="intro">
             <p>
                 This is a monte carlo simulation of the Ising and XY models in 1 or 2 dimensions.
-                They are simulated on a periodic grid (if you go off one end you come back at the opposite end).
+                These are toy models which are used to probe the kinds of physics that can emerge
+                when you have large numbers of interacting particles.
+                Here they are simulated on a periodic grid (if you go off one end you come back at the opposite end).
             </p>
 
             <p>
@@ -19,7 +21,8 @@
                 When the temperature is low enough for one state to dominate over the other, this is known as
                 "spontaneous symmetry breaking". Both states behave identically as far as the fundamental physics
                 is concerned (so we have a 'symmetry') but this symmetry is broken when the system spontaneously
-                picks one colour to prefer.
+                picks one colour to prefer. This is like what happens in a magnet when you cool it below the Curie temperature,
+                and it picks a direction to magnetize in.
             </p>
 
             <p>
@@ -27,10 +30,12 @@
                 Because drawing lots of arrows looks messy, the direction of each arrow is represented with a coloured pixel.
                 The colour varies continuously as the direction of the arrow moves around the circle.
                 Each arrow interacts with its neighbours. It prefers to point in a direction that is close to the direction its
-                neighbours are pointing in. More precisely: arrangements where neighbouring arrows point in similar directions
-                have lower energy than arrangements where neighbouring arrows point in different directions. The arrangement
+                neighbours are pointing in. More precisely: arrangements where neighbouring arrows point in similar directions (are similar colours)
+                have lower energy than arrangements where neighbouring arrows point in different directions (are different colours). The arrangement
                 with lowest possible energy is the one where <i>all</i> arrows point in the same direction (are all the same colour).
                 But if we raise the temperature, thermal fluctuations can push us into arrangements of higher energy.
+                In two dimensions, this model can contain 'vortices', a kind of topological defect. These proliferate above the ...
+                phase transition, but decay below it. This phase transition is seen in liquid helium. Below the ... transition, it is a superfluid.
             </p>
         </div>
         <div class="inputs" id="inputs">
