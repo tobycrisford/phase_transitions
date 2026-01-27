@@ -270,7 +270,7 @@ async function update_dynamic_explanation(o_dimension, dimension, temperature, e
     for (const exp of exps) {
         if (((temperature >= exp.range[0]) || (exp.range[0] === null)) && ((temperature < exp.range[1]) || (exp.range[1] === null))) {
             const explanation = await fetch('dynamic_explainer/' + exp.explainer).then((response) => response.text());
-            explanation_element.textContent = explanation;
+            explanation_element.innerHTML = explanation;
         }
     }
 }

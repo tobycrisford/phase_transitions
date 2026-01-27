@@ -1,15 +1,15 @@
-There is no symmetry breaking in the infinite XY model in 1 dimension.
+<p>There is no symmetry breaking in the infinite XY model in 1 dimension.
 If the direction of the arrows changes sufficiently slowly, this comes with 
 negligible energy cost. In 1 and 2 dimensions, it turns out that these fluctuations
-are enough to destroy order at any non-zero temperature.
+are enough to destroy order at any non-zero temperature.</p>
 
-But our simulation involves a finite lattice. When the temperature is made low enough, the 
+<p>But our simulation involves a finite lattice. When the temperature is made low enough, the 
 correlation length of the fluctuations exceeds the size of our lattice, and we might end up with an arrangement where all of the arrows point
-in almost the same way.
+in almost the same way.</p>
 
-But something more interesting can happen at very low temperatures as well. The lattice in our simulation is periodic,
+<p>But something more interesting can happen at very low temperatures as well. The lattice in our simulation is periodic,
 so in one dimension the lattice effectively lives on a circle. It is possible for the arrows to complete
 one cycle as we go around this circle. Like the vortices we see in 2 dimensions, such an arrangement is 
 very stable, protected by topology. Each arrow is pulled one way by the arrows to its left, but the other way by the arrows to its
 right. If you keep raising and lowering the temperature, you might see such arrangements emerge. You may even see some which wrap
-the circle multiple times.
+the circle multiple times.</p>

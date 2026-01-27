@@ -1,13 +1,15 @@
-Thermal fluctuations prevent the 1D Ising model from ever reaching an arrangement with a bias towards one state 
+<p>Thermal fluctuations prevent the 1D Ising model from ever reaching an arrangement with a bias towards one state 
 over the other. The symmetry is never broken at non-zero temperatures. Or at least, that's true of an 
 infinite lattice. With our finite simulation, for a low enough temperature the 'correlation length' will exceed 
 the size of our lattice, and so we do end up with an arrangement where all pixels are in the same state. 
 But if you wait long enough, you might see a region of the alternative state spontaneously emerge, and grow, 
-until the preferred state flips, and all pixels have the opposite colour instead. We can understand why it is so
+until the preferred state flips, and all pixels have the opposite colour instead.</p>
+
+<p>We can understand why it is so
 hard to preserve order in 1 dimension by considering 'domain walls', the boundary between a region of one state
 and a region of the other. This is where all the energy cost is.
 1 dimension is special, because this boundary is always a single pixel, regardless of how big the region it bounds
 is. This means an arrangement with two states separated by two domain walls has only slightly more energy than the
 lowest energy state.
 Also, once two domain walls have formed, separating two regions, the smaller region is just as likely to grow as the
-larger region is, since the size of the boundary stays the same.
+larger region is, since the size of the boundary stays the same.</p>
