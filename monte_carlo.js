@@ -262,25 +262,41 @@ function fetch_parameters() {
     return parameters;
 }
 
-let dynamic_explainer_promise = fetch('dynamic_explainer.json').then((response) => response.json());
-
+let dynamic_explainer_lookup = null;
 const explanation_cache = {};
+let cache_populated = false;
+async function populate_explanation_cache() {
+    if (cache_populated) {
+        return;
+    }
+    dynamic_explainer_lookup = await fetch('dynamic_explainer.json').then((response) => response.json());
+    for (const o_dimension in dynamic_explainer_lookup) {
+        for (const dimension in dynamic_explainer_lookup[o_dimension]) {
+            for (const exp of dynamic_explainer_lookup[o_dimension][dimension]) {
+                console.log('Fetching text file');
+                explanation_cache[exp.explainer] = await fetch('dynamic_explainer/' + exp.explainer).then((response) => response.text());
+            }
+        }
+    }
+    cache_populated = true;
+}
 
-async function update_dynamic_explanation(o_dimension, dimension, temperature, explanation_element) {
-    const dynamic_explainer_lookup = await dynamic_explainer_promise;
+function update_dynamic_explanation(o_dimension, dimension, temperature, explanation_element) {
+    if (!cache_populated) {
+        throw new Error('Dynamic explanations not populated');
+    }
     const exps = dynamic_explainer_lookup[o_dimension.toString()][dimension.toString()];
     for (const exp of exps) {
         if (((temperature >= exp.range[0]) || (exp.range[0] === null)) && ((temperature < exp.range[1]) || (exp.range[1] === null))) {
-            if (!(exp.explainer in explanation_cache)) {
-                console.log('fetching text file');
-                explanation_cache[exp.explainer] = await fetch('dynamic_explainer/' + exp.explainer).then((response) => response.text());
-            }
             explanation_element.innerHTML = explanation_cache[exp.explainer];;
         }
     }
 }
 
-function update_parameters() {
+async function update_parameters() {
+    if (!cache_populated) {
+        await populate_explanation_cache();
+    }
     const parameters = fetch_parameters();
 
     if (lattice === null) {
@@ -305,7 +321,6 @@ function update_parameters() {
     const temperature = 1 / parameters.beta;
     document.getElementById("temperature_display").textContent = temperature.toFixed(2).toString();
     document.getElementById("grid_display").textContent = lattice.N.toString();
-    document.getElementById("dynamic_explainer").innerHTML = "<i>Loading</i>"
     update_dynamic_explanation(parameters.o_dimension, parameters.dimension, temperature, document.getElementById("dynamic_explainer"));
 
     if (lattice_change || animation_id === null) {
