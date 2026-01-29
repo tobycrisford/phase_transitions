@@ -321,7 +321,7 @@ async function update_parameters() {
     const temperature = 1 / parameters.beta;
     document.getElementById("temperature_display").textContent = temperature.toFixed(2).toString();
     document.getElementById("grid_display").textContent = lattice.N.toString();
-    update_dynamic_explanation(parameters.o_dimension, parameters.dimension, temperature, document.getElementById("dynamic_explainer"));
+    update_dynamic_explanation(parameters.o_dimension, parameters.dimension, temperature, document.getElementById("dynamic_explainer_text"));
 
     if (lattice_change || animation_id === null) {
         animate_model(lattice, document.getElementById('lattice'), document.getElementById('vortices'), Math.pow(lattice.N, 2));
@@ -329,3 +329,22 @@ async function update_parameters() {
 }
 
 
+function open_model_dialog() {
+    const o_dimension = fetch_parameters().o_dimension;
+    if (o_dimension === 1) {
+        document.getElementById('ising_explainer').showModal();
+    }
+    else if (o_dimension === 2) {
+        document.getElementById('xy_explainer').showModal();
+    }
+}
+
+function create_dialog_listeners() {
+
+    document.getElementById('open_model_explainer').addEventListener('click', open_model_dialog);
+    document.getElementById('dynamic_explainer_button').addEventListener('click', () => {document.getElementById('dynamic_explainer').showModal();});
+    document.getElementById('close_ising').addEventListener('click', () => {document.getElementById('ising_explainer').close();});
+    document.getElementById('close_xy').addEventListener('click', () => {document.getElementById('xy_explainer').close();});
+    document.getElementById('close_dynamic_explainer').addEventListener('click', () => {document.getElementById('dynamic_explainer').close();});
+
+}

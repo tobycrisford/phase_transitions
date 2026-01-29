@@ -6,36 +6,9 @@
         <div class="explainer" id="intro">
             <p>
                 This is a monte carlo simulation of the Ising and XY models in 1 or 2 dimensions.
-                These are toy models which are used to probe the kinds of physics that can emerge
-                when you have large numbers of interacting particles.
+                These are toy models which are used to understand the interesting physics that can emerge
+                from large numbers of interacting particles.
                 Here they are simulated on a periodic grid (if you go off one end you come back at the opposite end).
-            </p>
-
-            <p>
-                <b>Ising model: </b> a grid of pixels that can be in one of two states (represented as colours).
-                Each pixel interacts with its neighbours.
-                It prefers to be in the same state as its neighbours. More precisely: arrangements where neighbouring pixels
-                are in the same state have lower energy than arrangements where neighbouring pixels are in different states. The arrangement
-                with lowest possible energy is the one where <i>all</i> pixels are in the same state (are all the same colour). But if we raise the
-                temperature, thermal fluctuations can push us into arrangements with higher energy.
-                When the temperature is low enough for one state to dominate over the other, this is known as
-                "spontaneous symmetry breaking". Both states behave identically as far as the fundamental physics
-                is concerned (so we have a 'symmetry') but this symmetry is broken when the system spontaneously
-                picks one colour to prefer. This is like what happens in a magnet when you cool it below the Curie temperature,
-                and it picks a direction to magnetize in.
-            </p>
-
-            <p>
-                <b>XY model: </b> a grid of arrows. Each arrow can point in any direction in the plane (covering a circle).
-                Because drawing lots of arrows looks messy, the direction of each arrow is represented with a coloured pixel.
-                The colour varies continuously as the direction of the arrow moves around the circle.
-                Each arrow interacts with its neighbours. It prefers to point in a direction that is close to the direction its
-                neighbours are pointing in. More precisely: arrangements where neighbouring arrows point in similar directions (are similar colours)
-                have lower energy than arrangements where neighbouring arrows point in different directions (are different colours). The arrangement
-                with lowest possible energy is the one where <i>all</i> arrows point in the same direction (are all the same colour).
-                But if we raise the temperature, thermal fluctuations can push us into arrangements of higher energy.
-                In two dimensions, this model can contain 'vortices', a kind of topological defect. These proliferate above the ...
-                phase transition, but decay below it. This phase transition is seen in liquid helium. Below the ... transition, it is a superfluid.
             </p>
         </div>
         <div class="inputs" id="inputs">
@@ -52,6 +25,7 @@
                     <option value="1">Ising</option>
                     <option value="2" selected>XY</option>
                 </select>
+                <span class="info-trigger" id="open_model_explainer">What is this?</span>
             </div>
             <div>
                 <label>Grid size: </label>
@@ -74,10 +48,46 @@
                 <canvas id="vortices" width="100" height="100" style="width: 500px; height: 500px; image-rendering: pixelated;"></canvas>
             </div>
         </div>
-        <div class="dynamic_explainer" id="dynamic_explainer"></div>
+        <div class="additional_text">
+            <span class="info-trigger" id="dynamic_explainer_button">What is going on here?</span>
+        </div>
+        <dialog id="dynamic_explainer">
+            <div id="dynamic_explainer_text"></div>
+            <button id="close_dynamic_explainer">Close</button>
+        </dialog>
+        <dialog id="ising_explainer">
+            <h3>Ising model</h3>
+            <p>A grid of pixels that can be in one of two states (represented as colours).
+                Each pixel interacts with its neighbours.
+                It prefers to be in the same state as its neighbours. More precisely: arrangements where neighbouring pixels
+                are in the same state have lower energy than arrangements where neighbouring pixels are in different states. The arrangement
+                with lowest possible energy is the one where <i>all</i> pixels are in the same state (are all the same colour). But if we raise the
+                temperature, thermal fluctuations can push us into arrangements with higher energy.
+                When the temperature is low enough for one state to dominate over the other, this is known as
+                "spontaneous symmetry breaking". Both states behave identically as far as the fundamental physics
+                is concerned (so we have a 'symmetry') but this symmetry is broken when the system spontaneously
+                picks one colour to prefer. This is like what happens in a magnet when you cool it below the Curie temperature,
+                and it picks a direction to magnetize in.</p>
+            <button id="close_ising">Close</button>
+        </dialog>
+        <dialog id="xy_explainer">
+            <h3>XY model</h3>
+            <p>A grid of arrows. Each arrow can point in any direction in the plane (covering a circle).
+                Because drawing lots of arrows looks messy, the direction of each arrow is represented with a coloured pixel.
+                The colour varies continuously as the direction of the arrow moves around the circle.
+                Each arrow interacts with its neighbours. It prefers to point in a direction that is close to the direction its
+                neighbours are pointing in. More precisely: arrangements where neighbouring arrows point in similar directions (are similar colours)
+                have lower energy than arrangements where neighbouring arrows point in different directions (are different colours). The arrangement
+                with lowest possible energy is the one where <i>all</i> arrows point in the same direction (are all the same colour).
+                But if we raise the temperature, thermal fluctuations can push us into arrangements of higher energy.
+                In two dimensions, this model can contain 'vortices', a kind of topological defect. These proliferate above the ...
+                phase transition, but decay below it. This phase transition is seen in liquid helium. Below the ... transition, it is a superfluid.</p>
+            <button id="close_xy">Close</button>
+        </dialog>
     </body>
     <script>
         update_parameters();
         document.getElementById("inputs").addEventListener('input', update_parameters);
+        create_dialog_listeners();
     </script>
 </html>
