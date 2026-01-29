@@ -1,0 +1,183 @@
+/* --- Base Styles & Layout --- */
+/* AI Generated! */
+:root {
+    --bg-color: #f8fafc;
+    --sidebar-bg: #ffffff;
+    --accent-color: #2563eb;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: grid;
+    /* This creates the sidebar (300px) and the main content area */
+    grid-template-columns: 320px 1fr;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+/* --- Sidebar Styling --- */
+.inputs {
+    grid-row: 1 / 4; /* Stretches from top to bottom */
+    grid-column: 1;
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.02);
+    z-index: 10;
+}
+
+.inputs h2 {
+    margin-top: 0;
+    font-size: 1.25rem;
+    color: var(--accent-color);
+}
+
+.inputs > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+label {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+}
+
+select, input[type="range"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: white;
+}
+
+/* --- Main Content Areas --- */
+.explainer {
+    grid-column: 2;
+    padding: 2rem 3rem 1rem 3rem;
+    max-width: 900px;
+}
+
+.explainer p {
+    line-height: 1.6;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.canvases {
+    grid-column: 2;
+    padding: 1rem 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: flex-start;
+}
+
+.canvas {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.canvas h1 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+canvas {
+    border-radius: 4px;
+    background: #000;
+    /* Inline styles in HTML handle the 500px, but we ensure it fits */
+    max-width: 100%;
+    height: auto !important; 
+}
+
+.additional_text {
+    grid-column: 2;
+    padding: 2rem 3rem;
+}
+
+/* --- Interactive Elements --- */
+.info-trigger {
+    font-size: 0.8rem;
+    color: var(--accent-color);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s;
+}
+
+.info-trigger:hover {
+    opacity: 0.7;
+}
+
+button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s, background 0.2s;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* --- Dialog (Modal) Styling --- */
+dialog {
+    border: none;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 500px;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+}
+
+dialog::backdrop {
+    background: rgba(15, 23, 42, 0.5);
+    backdrop-filter: blur(4px);
+}
+
+dialog h3 {
+    margin-top: 0;
+    color: var(--accent-color);
+}
+
+dialog p {
+    line-height: 1.5;
+    color: var(--text-main);
+}
+
+/* --- Utility --- */
+#grid_display, #temperature_display {
+    font-family: monospace;
+    font-weight: bold;
+    color: var(--accent-color);
+    font-size: 1rem;
+    margin-left: 5px;
+}
