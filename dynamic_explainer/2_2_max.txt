@@ -1,4 +1,4 @@
-<p>Above the ... transition, we have enough energy to spontaneously create vortex/anti-vortex pairs, and this happens everywhere.
+<p>Above the Berezinskii–Kosterlitz–Thouless transition, we have enough energy to spontaneously create vortex/anti-vortex pairs, and this happens everywhere.
 These vortices and anti-vortices completely destroy the long-range correlations.</p>
 
 <p>A 'vortex' is a special arrangement of arrows. It has a center point. As you move in a complete circle around the center point,

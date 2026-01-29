@@ -1,4 +1,4 @@
-<p>Close to the ... transition, you can spot vortex/anti-vortex pairs being spontaneously created, and then quickly
+<p>Close to the Berezinskii–Kosterlitz–Thouless transition, you can spot vortex/anti-vortex pairs being spontaneously created, and then quickly
 annihilated, interfering with the long range correlations.</p>
 
 <p>A 'vortex' is a special arrangement of arrows. It has a center point. As you move in a complete circle around the center point,
