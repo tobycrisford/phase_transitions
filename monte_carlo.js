@@ -324,7 +324,7 @@ async function update_parameters() {
     update_dynamic_explanation(parameters.o_dimension, parameters.dimension, temperature, document.getElementById("dynamic_explainer_text"));
 
     if (lattice_change || animation_id === null) {
-        animate_model(lattice, document.getElementById('lattice'), document.getElementById('vortices'), Math.pow(lattice.N, 2));
+        animate_model(lattice, document.getElementById('lattice'), document.getElementById('vortices'), Math.pow(lattice.N, lattice.dimension));
     }
 }
 
