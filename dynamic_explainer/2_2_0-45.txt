@@ -1,6 +1,7 @@
 <p>At low temperatures, the XY model will eventually settle down to an arrangement in which
-all of the arrows point in a similar direction to their neighbours (though not in exactly the same direction,
-since if the direction changes sufficiently slowly this has negligible energy cost).</p>
+all of the arrows point in a similar direction to their neighbours (in this visual: each pixel is a similar colour to its neighbours).
+Although they still won't point in exactly the same direction,
+since if the direction changes sufficiently slowly this has negligible energy cost.</p>
 
 <p>But it may take quite a long time to reach such an arrangement. We have to wait for the 'vortices' to disappear first.</p>
 
@@ -12,7 +13,7 @@ is much smaller, and becomes negligible at large distances. So vortices don't co
 it is very hard to get rid of it. Consider an arrow that is part of the vortex. It is being pulled one way by the arrows to its left,
 but the opposite way by the arrows to its right. This makes the arrangement very stable. It is an example of a 'topological defect'.</p>
 
-<p>The only way to get rid of a vortex is to collide it with an 'anti-vortex' (which is just a vortex where the winding goes the other way,
+<p>The only way to smoothly get rid of a vortex is to collide it with an 'anti-vortex' (which is just a vortex where the winding goes the other way,
 from green to red to blue to green). If you wait long enough at this temperature, eventually this will happen to all the vortices and anti-vortices
 and you will be left with no vortices at all.</p>
 
